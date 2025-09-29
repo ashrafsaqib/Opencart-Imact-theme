@@ -1,115 +1,182 @@
-/* Product Section */
-.product-section .rating {
-    color: #ffc107;
-}
-
-.product-section .quantity-selector .btn {
-    width: 40px;
-}
-
-.product-section .accordion-item {
-    border: none;
-    margin-bottom: 1rem;
-    border-radius: 10px;
+.product-detail-box {
     background-color: #fff;
-}
-
-.product-section .accordion-button {
-    font-weight: 600;
-    color: #333;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 1.5rem;
-}
-
-.product-section .accordion-button:not(.collapsed) {
-    color: #000;
-    background-color: #fff;
-    box-shadow: none;
-}
-
-.product-section .accordion-button::after {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23333'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-}
-
-.product-section .accordion-body {
-    padding: 0 1.5rem 1.5rem;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
 }
 
 .product-thumbnails img {
     cursor: pointer;
     border: 2px solid transparent;
-    transition: border-color 0.3s ease;
-}
-
-.product-thumbnails img.active, .product-thumbnails img:hover {
-    border-color: #a8d8a0;
-}
-
-.colors .color-dot {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    margin-right: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.colors .color-dot:hover {
-    transform: scale(1.1);
-}
-
-.social-share a {
-    margin-right: 0.5rem;
-}
-
-.product-details-tabs .nav-tabs .nav-link {
-    color: #333;
-    font-weight: 600;
-}
-
-.product-details-tabs .nav-tabs .nav-link.active {
-    color: #000;
-    border-color: #dee2e6 #dee2e6 #fff;
-}
-
-.product-details-tabs .tab-content {
-    padding: 2rem;
-    border: 1px solid #dee2e6;
-    border-top: none;
-    border-radius: 0 0 10px 10px;
-}
-.product-details-tabs .nav-pills .nav-link.active, .product-details-tabs .nav-pills .show>.nav-link {
-    background-color: #1a1a1a;
-    color: #fff;
-    border-color: #1a1a1a;
-}
-.product-details-tabs .nav-pills .nav-link {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    color: #333;
-    text-align: left;
-    margin-bottom: 0.5rem;
     transition: all 0.3s ease;
 }
 
-
-
-.product-details-tabs .tab-content {
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    padding: 2rem;
+.product-thumbnails img.active,
+.product-thumbnails img:hover {
+    border-color: #007bff; /* Bootstrap primary blue for active/hover */
 }
 
-.rating-stars {
+.color-dot {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
     cursor: pointer;
-    color: #e9ecef;
+    display: inline-block;
+    margin-right: 10px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px #ccc;
 }
 
-.rating-stars i:hover,
+.color-dot.active,
+.color-dot:hover {
+    box-shadow: 0 0 0 2px #007bff; /* Highlight active/hover color */
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.quantity-selector button {
+    border: none;
+    background-color: transparent;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.quantity-selector span {
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+.rating-stars i {
+    color: #ffc107; /* Bootstrap warning yellow for stars */
+    cursor: pointer;
+}
+
 .rating-stars i.active {
     color: #ffc107;
+}
+
+.product-details-tabs .nav-pills .nav-link {
+    text-align: left;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.product-details-tabs .nav-pills .nav-link.active {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.product-details-tabs .nav-pills .nav-link i {
+    margin-right: 10px;
+}
+
+.product-details-tabs .tab-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.product-details-tabs .tab-content h4 {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.product-details-tabs .tab-content p {
+    line-height: 1.8;
+}
+
+.product-details-tabs .table th,
+.product-details-tabs .table td {
+    padding: 15px;
+}
+
+.review-item img {
+    border: 1px solid #eee;
+}
+
+.add-review .form-control {
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+
+.add-review .btn-dark {
+    border-radius: 50px;
+}
+
+.related-products-section .product-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.related-products-section .product-card:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.related-products-section .product-card .product-image {
+    height: 200px; /* Fixed height for product images */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+}
+
+.related-products-section .product-card .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.related-products-section .product-card .card-body {
+    padding: 15px;
+}
+
+.related-products-section .product-card .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    height: 48px; /* Limit title to two lines */
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.related-products-section .product-card .card-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.related-products-section .product-card .rating span {
+    font-size: 0.9rem;
+    margin-right: 5px;
+}
+
+.related-products-section .product-card .rating i {
+    color: #ffc107;
+    font-size: 0.9rem;
+}
+
+.related-products-section .product-card .colors .color-dot {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #eee;
+    box-shadow: none;
+}
+
+.related-products-section .product-card .colors .color-dot.active,
+.related-products-section .product-card .colors .color-dot:hover {
+    box-shadow: 0 0 0 2px #007bff;
 }
