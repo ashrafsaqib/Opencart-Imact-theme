@@ -1,6 +1,6 @@
 # Opencart OC-Ultra Theme
 
-## Modern & Responsive E-commerce Theme for Opencart
+## Modern & Responsive E-commerce Theme for Opencart ( html css only as of now )
 
 OC-Ultra is a cutting-edge Opencart theme designed to provide a sleek, modern, and highly responsive shopping experience. Built with a focus on user experience and aesthetic appeal, this theme is perfect for any online store looking to make a strong impression.
 
@@ -50,8 +50,10 @@ OC-Ultra is a cutting-edge Opencart theme designed to provide a sleek, modern, a
 
 ## Installation
 
-(Instructions for Opencart installation would go here, e.g., upload files, activate theme, configure modules.)
+This is HTML CSS , you will need Opencart developer to implement it as theme however the html Css work done is according to Opencart Bootstrap 5.
+
+
 
 ## Support
 
-(Information on how to get support would go here.)
+support@iextendlabs.com 
