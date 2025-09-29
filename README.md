@@ -1,8 +1,8 @@
-# Opencart Impact Theme
+# Opencart OC-Ultra Theme
 
 ## Modern & Responsive E-commerce Theme for Opencart
 
-Impact is a cutting-edge Opencart theme designed to provide a sleek, modern, and highly responsive shopping experience. Built with a focus on user experience and aesthetic appeal, this theme is perfect for any online store looking to make a strong impression.
+OC-Ultra is a cutting-edge Opencart theme designed to provide a sleek, modern, and highly responsive shopping experience. Built with a focus on user experience and aesthetic appeal, this theme is perfect for any online store looking to make a strong impression.
 
 ## Features
 
