@@ -342,3 +342,14 @@ body {
 .shop-slider-body ul li a[aria-expanded="true"] i {
     transform: rotate(180deg);
 }
+
+/* Desktop styles for shop slider */
+@media (min-width: 992px) {
+    .shop-slider-body ul li a {
+        font-size: 1.1rem; /* Slightly larger font for categories */
+    }
+
+    .shop-slider-body ul li ul li a {
+        font-size: 1rem; /* Slightly larger font for sub-categories */
+    }
+}
