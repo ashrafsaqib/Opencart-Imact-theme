@@ -225,7 +225,7 @@
 }
 
 .product-img-fixed-height {
-    height: 200px;
+    height: 400px;
     object-fit: cover;
 }
 
