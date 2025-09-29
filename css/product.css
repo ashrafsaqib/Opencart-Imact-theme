@@ -1,0 +1,115 @@
+/* Product Section */
+.product-section .rating {
+    color: #ffc107;
+}
+
+.product-section .quantity-selector .btn {
+    width: 40px;
+}
+
+.product-section .accordion-item {
+    border: none;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.product-section .accordion-button {
+    font-weight: 600;
+    color: #333;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.product-section .accordion-button:not(.collapsed) {
+    color: #000;
+    background-color: #fff;
+    box-shadow: none;
+}
+
+.product-section .accordion-button::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23333'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.product-section .accordion-body {
+    padding: 0 1.5rem 1.5rem;
+}
+
+.product-thumbnails img {
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.product-thumbnails img.active, .product-thumbnails img:hover {
+    border-color: #a8d8a0;
+}
+
+.colors .color-dot {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.colors .color-dot:hover {
+    transform: scale(1.1);
+}
+
+.social-share a {
+    margin-right: 0.5rem;
+}
+
+.product-details-tabs .nav-tabs .nav-link {
+    color: #333;
+    font-weight: 600;
+}
+
+.product-details-tabs .nav-tabs .nav-link.active {
+    color: #000;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.product-details-tabs .tab-content {
+    padding: 2rem;
+    border: 1px solid #dee2e6;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+}
+
+.product-details-tabs .nav-pills .nav-link {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #333;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.product-details-tabs .nav-pills .nav-link.active, .product-details-tabs .nav-pills .show>.nav-link {
+    background-color: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+}
+
+.product-details-tabs .tab-content {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 2rem;
+}
+
+.rating-stars {
+    cursor: pointer;
+    color: #e9ecef;
+}
+
+.rating-stars i:hover,
+.rating-stars i.active {
+    color: #ffc107;
+}
