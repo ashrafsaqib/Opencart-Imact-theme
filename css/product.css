@@ -82,7 +82,11 @@
     border-top: none;
     border-radius: 0 0 10px 10px;
 }
-
+.product-details-tabs .nav-pills .nav-link.active, .product-details-tabs .nav-pills .show>.nav-link {
+    background-color: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+}
 .product-details-tabs .nav-pills .nav-link {
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
@@ -92,11 +96,7 @@
     transition: all 0.3s ease;
 }
 
-.product-details-tabs .nav-pills .nav-link.active, .product-details-tabs .nav-pills .show>.nav-link {
-    background-color: #1a1a1a;
-    color: #fff;
-    border-color: #1a1a1a;
-}
+
 
 .product-details-tabs .tab-content {
     border: 1px solid #dee2e6;
