@@ -163,6 +163,9 @@
 .best-sellers-section {
     background-color: #fff;
 }
+#best-sellers-container {
+    overflow-x: hidden;
+}
 
 .product-card {
     border: none;
