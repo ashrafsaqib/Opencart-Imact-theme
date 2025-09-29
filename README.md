@@ -7,7 +7,7 @@ OC-Ultra is a cutting-edge Opencart theme designed to provide a sleek, modern, a
 ## Features
 
 *   **Responsive Design:** Ensures your store looks great and functions flawlessly on all devices, from desktops to mobile phones.
-*   **Intuitive Navigation:** Features smooth slide-in menus for Shop, Search, and Cart, providing quick and easy access to essential store functions without cluttering the main interface.
+*   **Intuitive Navigation:** Features smooth slide-in menus for Shop, Search, and a dedicated Cart section, providing quick and easy access to essential store functions without cluttering the main interface.
 *   **Dynamic Product Pages:**
     *   **Image Gallery:** Showcase your products with a prominent main image and a convenient thumbnail gallery for multiple views.
     *   **Interactive Options:** Engage customers with color swatches that dynamically update product images.
