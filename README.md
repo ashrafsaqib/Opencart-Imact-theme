@@ -36,6 +36,18 @@ OC-Ultra is a cutting-edge Opencart theme designed to provide a sleek, modern, a
 
 ![Category Page](screenshots/category-page.png)
 
+### Cart Slide In
+
+![Cart Slide In](screenshots/home-cart.png)
+
+### Slide In Menu
+
+![Slide In Menu](screenshots/home-menu.png)
+
+### Search Slide In
+
+![Search Slide In](screenshots/home-search.png)
+
 ## Installation
 
 (Instructions for Opencart installation would go here, e.g., upload files, activate theme, configure modules.)
