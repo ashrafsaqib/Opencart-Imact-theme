@@ -68,7 +68,7 @@ body {
 }
 
 .hero-section .carousel-item {
-    height: 80vh;
+    aspect-ratio: 1600 / 720;
     background-size: cover;
     background-position: center;
     position: relative;
