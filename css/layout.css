@@ -22,6 +22,8 @@ body {
 
 .hero-container {
     background-color: #86a88d;
+}
+.home-hero-container {
     padding-bottom: 2rem;
 }
 
