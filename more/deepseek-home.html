@@ -208,60 +208,33 @@
         }
 
         .slider-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
             display: flex;
-            justify-content: center;
-            margin-top: 30px;
             gap: 10px;
         }
 
         .slider-dot {
-            width: 12px;
-            height: 12px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background-color: var(--secondary);
+            color: white;
             cursor: pointer;
             transition: var(--transition);
-            opacity: 0.5;
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
         }
 
         .slider-dot.active {
             background-color: var(--accent);
             opacity: 1;
-            transform: scale(1.2);
-        }
-
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 10;
-            color: var(--primary);
-            box-shadow: var(--shadow);
-        }
-
-        .slider-arrow:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .slider-arrow.prev {
-            left: 20px;
-        }
-
-        .slider-arrow.next {
-            right: 20px;
+            transform: scale(1.1);
         }
 
         /* Promotional Banner */
@@ -724,10 +697,7 @@
             .hero-image {
                 height: 300px;
             }
-            
-            .slider-arrow {
-                display: none;
-            }
+
             
             .countdown {
                 gap: 10px;
@@ -929,11 +899,9 @@
     <section class="hero-slider-section">
         <div class="container">
             <div class="hero-slider">
-                <div class="slider-arrow prev">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <div class="slider-arrow next">
-                    <i class="fas fa-chevron-right"></i>
+                <div class="slider-controls">
+                    <div class="slider-dot active">1</div>
+                    <div class="slider-dot">2</div>
                 </div>
                 
                 <div class="slider-container">
@@ -971,11 +939,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="slider-controls">
-                <div class="slider-dot active"></div>
-                <div class="slider-dot"></div>
             </div>
         </div>
     </section>
@@ -1555,8 +1518,6 @@
         const sliderContainer = document.querySelector('.slider-container');
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slider-dot');
-        const prevBtn = document.querySelector('.slider-arrow.prev');
-        const nextBtn = document.querySelector('.slider-arrow.next');
         
         let currentSlide = 0;
         const slideCount = slides.length;
@@ -1573,10 +1534,6 @@
             
             currentSlide = index;
         }
-        
-        // Event listeners
-        prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
-        nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
         
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => goToSlide(index));
