@@ -1,0 +1,1558 @@
+# Complete E-commerce Homepage with Essential Sections
+
+I've added all the most commonly used e-commerce homepage sections while maintaining the modern liquid glass UI design. The new sections include: Trending Now, New Arrivals, Summer Sale, Customer Favorites, and Brand Values.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLSTICE | Summer Apparel</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary: #f8f9fa;
+            --secondary: #e9ecef;
+            --accent: #FF6B6B;
+            --dark: #212529;
+            --light: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 107, 107, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(107, 183, 255, 0.05) 0%, transparent 20%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        /* Header Styles */
+        .navbar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+        
+        .navbar-brand span {
+            color: var(--accent);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* Hero Slider Section */
+        .hero-slider {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 100%;
+        }
+        
+        .slide-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 0 2rem;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            text-align: left;
+        }
+        
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #212529 0%, #495057 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: #495057;
+            font-weight: 300;
+            max-width: 500px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, #ff5252 100%);
+            border: none;
+            padding: 0.8rem 2.5rem;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+        
+        .hero-image-container {
+            position: relative;
+            z-index: 1;
+            transform: translateY(0);
+            perspective: 1000px;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        
+        .hero-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: rotateY(-5deg);
+            transition: var(--transition);
+            width: auto;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .hero-slider .swiper-slide-active .hero-image {
+            transform: rotateY(0deg) translateY(-10px);
+        }
+        
+        /* Minimalist Bottom Controls */
+        .hero-controls {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 12px;
+            z-index: 3;
+        }
+        
+        .control-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            transition: var(--transition);
+            box-shadow: var(--glass-shadow);
+            cursor: pointer;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+            transform: scale(1.1);
+        }
+        
+        .control-btn i {
+            font-size: 1.2rem;
+        }
+        
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #6BB7FF);
+            border-radius: 3px;
+        }
+        
+        /* Product Card */
+        .product-card-modern {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card-modern:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image-container {
+            position: relative;
+            height: 0;
+            padding-bottom: 120%; /* 5:6 aspect ratio */
+            overflow: hidden;
+        }
+        
+        .product-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-card-modern:hover .product-image-container img {
+            transform: scale(1.08);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+        }
+        
+        .product-actions {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+        
+        .product-card-modern:hover .product-actions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .action-btn:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-category {
+            color: #6c757d;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .product-description {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+        }
+        
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, #6BB7FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .add-to-cart {
+            background: linear-gradient(135deg, var(--accent) 0%, #ff5252 100%);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+            transition: var(--transition);
+        }
+        
+        .add-to-cart:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+        }
+        
+        /* Trending Now Section */
+        .trending-section {
+            padding: 6rem 0;
+            background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+        }
+        
+        .trending-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #6BB7FF 0%, #4A90E2 100%);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(107, 183, 255, 0.3);
+        }
+        
+        /* New Arrivals Section */
+        .new-arrivals-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+        }
+        
+        .new-badge {
+            background: linear-gradient(135deg, #FF6B6B 0%, #ff5252 100%);
+        }
+        
+        /* Summer Sale Section */
+        .summer-sale-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #fff8f0 0%, #fff0e6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .summer-sale-section::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .sale-badge {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #212529;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-right: 0.5rem;
+        }
+        
+        /* Customer Favorites */
+        .favorites-section {
+            padding: 6rem 0;
+            background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+        }
+        
+        .favorite-badge {
+            background: linear-gradient(135deg, #FF6B6B 0%, #ff5252 100%);
+        }
+        
+        /* Brand Values */
+        .brand-values {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-radius: 24px;
+            transition: var(--transition);
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            height: 100%;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 107, 107, 0.3);
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, rgba(107, 183, 255, 0.15) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .value-card:hover .value-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.25) 0%, rgba(107, 183, 255, 0.25) 100%);
+        }
+        
+        .value-icon i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent) 0%, #6BB7FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .value-card h4 {
+            margin-bottom: 1rem;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(245, 247, 250, 0.8) 100%);
+            padding: 5rem 0;
+            border-radius: 30px;
+            margin: 5rem 0;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+        
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .newsletter p {
+            margin-bottom: 2rem;
+            color: #495057;
+        }
+        
+        .form-control {
+            height: 56px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            padding-left: 1.5rem;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.25);
+        }
+        
+        .input-group {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a1d22 0%, #212529 100%);
+            color: #adb5bd;
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .footer-links h5 {
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            z-index: 1;
+        }
+        
+        .footer-links h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+            z-index: 1;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-right: 12px;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-icons a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero-controls {
+                bottom: 30px;
+                right: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-slider {
+                text-align: center;
+                padding-top: 100px;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .slide-content {
+                flex-direction: column;
+                padding: 0 1.5rem;
+            }
+            
+            .hero-content {
+                margin: 0 auto 2rem;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-image-container {
+                display: flex;
+                height: auto;
+                max-height: 400px;
+                margin-top: 0;
+            }
+            
+            .hero-controls {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .control-btn {
+                width: 48px;
+                height: 48px;
+            }
+            
+            .navbar-nav {
+                margin-top: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .product-card-modern {
+                margin-bottom: 2rem;
+            }
+            
+            .hero-controls {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .control-btn {
+                width: 44px;
+                height: 44px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">SOL<span>STICE</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Women</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Men</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Collections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sale</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="text-dark position-relative cart-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider Section -->
+    <section class="hero-slider">
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <div class="hero-content">
+                            <h1>Summer Essentials Reimagined</h1>
+                            <p>Discover our curated collection of lightweight, breathable apparel designed for sun-drenched days and warm summer nights.</p>
+                            <a href="#" class="btn btn-primary">Shop New Arrivals</a>
+                        </div>
+                        <div class="hero-image-container">
+                            <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Summer Collection" class="hero-image">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <div class="hero-content">
+                            <h1>Beachwear Collection</h1>
+                            <p>Effortless style meets functionality in our new beachwear line. Designed for comfort and sun protection.</p>
+                            <a href="#" class="btn btn-primary">Explore Beachwear</a>
+                        </div>
+                        <div class="hero-image-container">
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Beachwear" class="hero-image">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <div class="hero-content">
+                            <h1>Summer Accessories</h1>
+                            <p>Complete your summer look with our curated selection of hats, bags, and sunglasses.</p>
+                            <a href="#" class="btn btn-primary">Shop Accessories</a>
+                        </div>
+                        <div class="hero-image-container">
+                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Accessories" class="hero-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Minimalist Bottom Controls -->
+        <div class="hero-controls">
+            <div class="control-btn prev-slide">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="control-btn next-slide">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Now Section -->
+    <section class="trending-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trending Now</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="trending-badge">Trending</span>
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Linen Shirt">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Tops</div>
+                            <h3 class="product-title">Linen Shirt</h3>
+                            <p class="product-description">Lightweight and breathable for hot days. Made with 100% organic linen.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$79.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="trending-badge">Trending</span>
+                            <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Cotton Dress">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Dresses</div>
+                            <h3 class="product-title">Cotton Dress</h3>
+                            <p class="product-description">Effortless style for summer evenings. Features adjustable straps.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$89.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="trending-badge">Trending</span>
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Linen Shorts">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Bottoms</div>
+                            <h3 class="product-title">Linen Shorts</h3>
+                            <p class="product-description">Comfortable and stylish for beach days. Elastic waistband for comfort.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$64.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="trending-badge">Trending</span>
+                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Straw Hat">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Accessories</div>
+                            <h3 class="product-title">Straw Hat</h3>
+                            <p class="product-description">Essential sun protection with style. Handwoven from natural fibers.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$39.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section class="new-arrivals-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>New Arrivals</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge new-badge">New</span>
+                            <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Summer Top">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Tops</div>
+                            <h3 class="product-title">Summer Top</h3>
+                            <p class="product-description">Light and airy for the hottest days. Features delicate embroidery.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$59.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge new-badge">New</span>
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Beach Coverup">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Beachwear</div>
+                            <h3 class="product-title">Beach Coverup</h3>
+                            <p class="product-description">Lightweight and stylish for poolside or beach days.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$49.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge new-badge">New</span>
+                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Sunglasses">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Accessories</div>
+                            <h3 class="product-title">Sunglasses</h3>
+                            <p class="product-description">UV protection with stylish frames. Polarized lenses for glare reduction.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$79.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge new-badge">New</span>
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Beach Tote">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Bags</div>
+                            <h3 class="product-title">Beach Tote</h3>
+                            <p class="product-description">Spacious and durable for all your summer essentials.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$54.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summer Sale Section -->
+    <section class="summer-sale-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Summer Sale</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge sale-badge">Sale</span>
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Linen Shirt">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Tops</div>
+                            <h3 class="product-title">Linen Shirt</h3>
+                            <p class="product-description">Lightweight and breathable for hot days.</p>
+                            <div class="product-footer">
+                                <div>
+                                    <span class="original-price">$79.99</span>
+                                    <span class="product-price">$59.99</span>
+                                </div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge sale-badge">Sale</span>
+                            <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Cotton Dress">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Dresses</div>
+                            <h3 class="product-title">Cotton Dress</h3>
+                            <p class="product-description">Effortless style for summer evenings.</p>
+                            <div class="product-footer">
+                                <div>
+                                    <span class="original-price">$89.99</span>
+                                    <span class="product-price">$67.99</span>
+                                </div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge sale-badge">Sale</span>
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Linen Shorts">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Bottoms</div>
+                            <h3 class="product-title">Linen Shorts</h3>
+                            <p class="product-description">Comfortable and stylish for beach days.</p>
+                            <div class="product-footer">
+                                <div>
+                                    <span class="original-price">$64.99</span>
+                                    <span class="product-price">$48.99</span>
+                                </div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge sale-badge">Sale</span>
+                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Straw Hat">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Accessories</div>
+                            <h3 class="product-title">Straw Hat</h3>
+                            <p class="product-description">Essential sun protection with style.</p>
+                            <div class="product-footer">
+                                <div>
+                                    <span class="original-price">$39.99</span>
+                                    <span class="product-price">$29.99</span>
+                                </div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Favorites Section -->
+    <section class="favorites-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer Favorites</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge favorite-badge">★ 4.9</span>
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Linen Shirt">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Tops</div>
+                            <h3 class="product-title">Linen Shirt</h3>
+                            <p class="product-description">Our best-selling shirt with over 2,000 5-star reviews.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$79.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge favorite-badge">★ 4.8</span>
+                            <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Cotton Dress">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Dresses</div>
+                            <h3 class="product-title">Cotton Dress</h3>
+                            <p class="product-description">A customer favorite for summer weddings and events.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$89.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge favorite-badge">★ 4.7</span>
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Linen Shorts">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Bottoms</div>
+                            <h3 class="product-title">Linen Shorts</h3>
+                            <p class="product-description">The perfect summer staple with over 1,500 reviews.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$64.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card-modern">
+                        <div class="product-image-container">
+                            <span class="product-badge favorite-badge">★ 4.9</span>
+                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Straw Hat">
+                            <div class="product-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Accessories</div>
+                            <h3 class="product-title">Straw Hat</h3>
+                            <p class="product-description">Our most reviewed accessory with perfect sun protection.</p>
+                            <div class="product-footer">
+                                <div class="product-price">$39.99</div>
+                                <button class="add-to-cart">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Values Section -->
+    <section class="brand-values">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Values</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4>Sustainable Materials</h4>
+                        <p>We use eco-friendly fabrics like organic cotton, Tencel™, and recycled materials in all our products.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h4>UV Protection</h4>
+                        <p>Specialized fabrics with UPF 50+ protection to keep you safe in the sun without compromising style.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h4>Ethical Production</h4>
+                        <p>Our garments are made in certified factories with fair wages and safe working conditions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Join Our Summer Club</h2>
+                <p>Be the first to know about new arrivals, exclusive offers, and summer style tips.</p>
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Your email address">
+                    <button class="btn btn-primary" type="button">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="footer-logo">SOL<span>STICE</span></div>
+                    <p>Curated summer apparel for those who embrace the sun and live for warm days.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <div class="footer-links">
+                        <h5>Shop</h5>
+                        <a href="#">Women</a>
+                        <a href="#">Men</a>
+                        <a href="#">New Arrivals</a>
+                        <a href="#">Best Sellers</a>
+                        <a href="#">Sale</a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <div class="footer-links">
+                        <h5>Company</h5>
+                        <a href="#">About Us</a>
+                        <a href="#">Sustainability</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Press</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="footer-links">
+                        <h5>Support</h5>
+                        <a href="#">Contact Us</a>
+                        <a href="#">FAQs</a>
+                        <a href="#">Shipping & Returns</a>
+                        <a href="#">Size Guide</a>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Solstice. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize Hero Swiper
+        const heroSwiper = new Swiper('.hero-swiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            }
+        });
+        
+        // Custom navigation controls
+        document.querySelector('.prev-slide').addEventListener('click', () => {
+            heroSwiper.slidePrev();
+        });
+        
+        document.querySelector('.next-slide').addEventListener('click', () => {
+            heroSwiper.slideNext();
+        });
+        
+        // Simple animation for navbar links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'var(--glass-bg)';
+                navbar.style.boxShadow = 'var(--glass-shadow)';
+            }
+        });
+        
+        // Add to cart animation
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const originalIcon = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i>';
+                this.style.backgroundColor = '#4CAF50';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalIcon;
+                    this.style.backgroundColor = '';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
