@@ -844,6 +844,250 @@
   font-size: 14px;
   color: #878787;
 }
+/* Cart Slider */
+.cart-slider-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.cart-slider-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-slider {
+    position: fixed;
+    top: 20px;
+    right: -420px; /* Initially off-screen */
+    width: 400px;
+    height: calc(100vh - 40px);
+    background-color: #fff;
+    z-index: 1050;
+    border-radius: 20px;
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.3s ease;
+}
+
+.cart-slider.show {
+    right: 0;
+}
+
+.cart-slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-slider-header h5 {
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.cart-slider-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.cart-item {
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 1rem;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-details h6 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-selector span {
+    padding: 0 0.5rem;
+}
+
+.btn-remove {
+    background: none;
+    border: none;
+    color: #999;
+}
+
+.cart-slider-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+/* Search Slider */
+.search-slider-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.search-slider-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-slider {
+    position: fixed;
+    top: 20px;
+    right: -420px; /* Initially off-screen */
+    width: 400px;
+    height: calc(100vh - 40px);
+    background-color: #fff;
+    z-index: 1050;
+    border-radius: 20px;
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.3s ease;
+}
+
+.search-slider.show {
+    right: 0;
+}
+
+.search-slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.search-slider-header h5 {
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.search-slider-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+/* Shop Slider */
+.shop-slider-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.shop-slider-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.shop-slider {
+    position: fixed;
+    top: 20px;
+    left: -420px; /* Initially off-screen */
+    width: 400px;
+    height: calc(100vh - 40px);
+    background-color: #fff;
+    z-index: 1050;
+    border-radius: 20px;
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    transition: left 0.3s ease;
+}
+
+.shop-slider.show {
+    left: 0;
+}
+
+.shop-slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.shop-slider-header h5 {
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.shop-slider-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.shop-slider-body ul li a {
+    display: block;
+    padding: 0.5rem 0;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.shop-slider-body ul li a:hover {
+    color: #a8d8a0;
+}
+
+.shop-slider-body ul li a i {
+    float: right;
+    transition: transform 0.3s ease;
+}
+
+.shop-slider-body ul li a[aria-expanded="true"] i {
+    transform: rotate(180deg);
+}
+
+/* Desktop styles for shop slider */
+@media (min-width: 992px) {
+    .shop-slider-body ul li a {
+        font-size: 1.1rem; /* Slightly larger font for categories */
+    }
+
+    .shop-slider-body ul li ul li a {
+        font-size: 1rem; /* Slightly larger font for sub-categories */
+    }
+}
     </style>
 </head>
 <body>
@@ -866,7 +1110,7 @@
                         <a class="nav-link active" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Shop</a>
+                        <a class="nav-link" href="#" id="shop-icon-anchor">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Collections</a>
@@ -880,13 +1124,13 @@
                 </ul>
                 
                 <div class="d-flex align-items-center">
-                    <a href="#" class="text-dark me-3 position-relative">
+                    <a href="#" class="text-dark me-3 position-relative" id="search-icon-anchor">
                         <i class="fas fa-search fa-lg"></i>
                     </a>
                     <a href="#" class="text-dark me-3 position-relative">
                         <i class="fas fa-user fa-lg"></i>
                     </a>
-                    <a href="#" class="text-dark position-relative">
+                    <a href="#" class="text-dark position-relative" id="cart-icon-anchor">
                         <i class="fas fa-shopping-bag fa-lg"></i>
                         <span class="cart-badge">3</span>
                     </a>
@@ -1512,6 +1756,109 @@
         </div>
     </footer>
 
+    <!-- Shop Slider -->
+    <div class="shop-slider-overlay"></div>
+    <div class="shop-slider">
+        <div class="shop-slider-header">
+            <h5>Shop</h5>
+            <button type="button" class="btn-close" aria-label="Close" id="close-shop"></button>
+        </div>
+        <div class="shop-slider-body">
+            <ul class="list-unstyled">
+                <li>
+                    <a href="category.html" data-bs-toggle="collapse" data-bs-target="#headphones-sub" aria-expanded="false" aria-controls="headphones-sub">Headphones <i class="bi bi-chevron-down"></i></a>
+                    <div class="collapse" id="headphones-sub">
+                        <ul class="list-unstyled ms-4">
+                            <li><a href="#">Over-Ear</a></li>
+                            <li><a href="#">On-Ear</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" data-bs-toggle="collapse" data-bs-target="#earphones-sub" aria-expanded="false" aria-controls="earphones-sub">Earphones <i class="bi bi-chevron-down"></i></a>
+                    <div class="collapse" id="earphones-sub">
+                        <ul class="list-unstyled ms-4">
+                            <li><a href="#">Wired</a></li>
+                            <li><a href="#">Wireless</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#">Speakers</a></li>
+                <li><a href="#">Accessories</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Search Slider -->
+    <div class="search-slider-overlay"></div>
+    <div class="search-slider">
+        <div class="search-slider-header">
+            <h5>Search</h5>
+            <button type="button" class="btn-close" aria-label="Close" id="close-search"></button>
+        </div>
+        <div class="search-slider-body">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search for products...">
+                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+            </div>
+            <div class="search-results">
+                <!-- Search results will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Slider -->
+    <div class="cart-slider-overlay"></div>
+    <div class="cart-slider">
+        <div class="cart-slider-header">
+            <h5>Your Cart</h5>
+            <button type="button" class="btn-close" aria-label="Close" id="close-cart"></button>
+        </div>
+        <div class="cart-slider-body">
+            <!-- Cart is empty -->
+            <!-- <div class="text-center">
+                <p>Your cart is empty</p>
+                <a href="#" class="btn btn-dark rounded-pill">Continue Shopping</a>
+            </div> -->
+
+            <!-- Cart with items -->
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop" alt="Product 1">
+                <div class="cart-item-details">
+                    <h6>MH40 Wireless</h6>
+                    <p>$299.00</p>
+                    <div class="quantity-selector">
+                        <button class="btn btn-sm btn-outline-secondary">-</button>
+                        <span>1</span>
+                        <button class="btn btn-sm btn-outline-secondary">+</button>
+                    </div>
+                </div>
+                <button class="btn-remove"><i class="bi bi-trash"></i></button>
+            </div>
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1610438235354-a6ae5528385c?q=80&w=2070&auto=format&fit=crop" alt="Product 2">
+                <div class="cart-item-details">
+                    <h6>MW08 Sport</h6>
+                    <p>$349.00</p>
+                    <div class="quantity-selector">
+                        <button class="btn btn-sm btn-outline-secondary">-</button>
+                        <span>1</span>
+                        <button class="btn btn-sm btn-outline-secondary">+</button>
+                    </div>
+                </div>
+                <button class="btn-remove"><i class="bi bi-trash"></i></button>
+            </div>
+        </div>
+        <div class="cart-slider-footer">
+            <div class="d-flex justify-content-between">
+                <h6>Subtotal</h6>
+                <h6>$648.00</h6>
+            </div>
+            <p class="text-muted">Taxes and shipping calculated at checkout.</p>
+            <a href="#" class="btn btn-dark w-100 rounded-pill">Checkout</a>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Slider functionality
@@ -1580,6 +1927,90 @@
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartIcon = document.getElementById('cart-icon-anchor');
+            const cartSlider = document.querySelector('.cart-slider');
+            const cartOverlay = document.querySelector('.cart-slider-overlay');
+            const closeCart = document.getElementById('close-cart');
+
+            if (cartIcon) {
+                cartIcon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    cartSlider.classList.add('show');
+                    cartOverlay.classList.add('show');
+                });
+            }
+
+            if (closeCart) {
+                closeCart.addEventListener('click', function() {
+                    cartSlider.classList.remove('show');
+                    cartOverlay.classList.remove('show');
+                });
+            }
+
+            if (cartOverlay) {
+                cartOverlay.addEventListener('click', function() {
+                    cartSlider.classList.remove('show');
+                    cartOverlay.classList.remove('show');
+                });
+            }
+
+            const searchIcon = document.getElementById('search-icon-anchor');
+            const searchSlider = document.querySelector('.search-slider');
+            const searchOverlay = document.querySelector('.search-slider-overlay');
+            const closeSearch = document.getElementById('close-search');
+
+            if (searchIcon) {
+                searchIcon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    searchSlider.classList.add('show');
+                    searchOverlay.classList.add('show');
+                });
+            }
+
+            if (closeSearch) {
+                closeSearch.addEventListener('click', function() {
+                    searchSlider.classList.remove('show');
+                    searchOverlay.classList.remove('show');
+                });
+            }
+
+            if (searchOverlay) {
+                searchOverlay.addEventListener('click', function() {
+                    searchSlider.classList.remove('show');
+                    searchOverlay.classList.remove('show');
+                });
+            }
+
+            const shopIcon = document.getElementById('shop-icon-anchor');
+            const shopSlider = document.querySelector('.shop-slider');
+            const shopOverlay = document.querySelector('.shop-slider-overlay');
+            const closeShop = document.getElementById('close-shop');
+
+            if (shopIcon) {
+                shopIcon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    shopSlider.classList.add('show');
+                    shopOverlay.classList.add('show');
+                });
+            }
+
+            if (closeShop) {
+                closeShop.addEventListener('click', function() {
+                    shopSlider.classList.remove('show');
+                    shopOverlay.classList.remove('show');
+                });
+            }
+
+            if (shopOverlay) {
+                shopOverlay.addEventListener('click', function() {
+                    shopSlider.classList.remove('show');
+                    shopOverlay.classList.remove('show');
+                });
             }
         });
     </script>
