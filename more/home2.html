@@ -1018,6 +1018,44 @@
     flex-grow: 1;
 }
 
+.search-slider .form-control {
+    border: 1px solid #ced4da;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.search-result-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.search-result-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 1rem;
+}
+
+.search-result-item-details h6 {
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.search-result-item-details p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
 /* Shop Slider */
 .shop-slider-overlay {
     position: fixed;
@@ -1817,10 +1855,30 @@
         <div class="search-slider-body">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Search for products...">
-                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                <button class="btn btn-dark" type="button"><i class="fas fa-search"></i></button>
             </div>
             <div class="search-results">
-                <!-- Search results will be populated here -->
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Minimalist Watch">
+                    <div class="search-result-details">
+                        <h6>Minimalist Timepiece</h6>
+                        <p>$249.00</p>
+                    </div>
+                </div>
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Ceramic Vase">
+                    <div class="search-result-details">
+                        <h6>Ceramic Vase</h6>
+                        <p>$89.00</p>
+                    </div>
+                </div>
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Desk Lamp">
+                    <div class="search-result-details">
+                        <h6>Adjustable Desk Lamp</h6>
+                        <p>$129.00</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
