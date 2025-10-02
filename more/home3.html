@@ -1,8 +1,3 @@
-# Complete E-commerce Homepage with Essential Sections
-
-I've added all the most commonly used e-commerce homepage sections while maintaining the modern liquid glass UI design. The new sections include: Trending Now, New Arrivals, Summer Sale, Customer Favorites, and Brand Values.
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +10,7 @@ I've added all the most commonly used e-commerce homepage sections while maintai
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+
     <style>
         :root {
             --primary: #f8f9fa;
@@ -152,7 +146,7 @@ I've added all the most commonly used e-commerce homepage sections while maintai
         .slide-content {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             width: 100%;
             height: 100%;
             padding: 0 2rem;
@@ -238,10 +232,15 @@ I've added all the most commonly used e-commerce homepage sections while maintai
             width: auto;
             height: auto;
             object-fit: cover;
+            margin: auto;
         }
         
-        .hero-slider .swiper-slide-active .hero-image {
+        .hero-slider .carousel-item.active .hero-image {
             transform: rotateY(0deg) translateY(-10px);
+        }
+
+        .carousel, .carousel-inner, .carousel-item {
+            height: 100%;
         }
         
         /* Minimalist Bottom Controls */
@@ -1088,10 +1087,15 @@ I've added all the most commonly used e-commerce homepage sections while maintai
 
     <!-- Hero Slider Section -->
     <section class="hero-slider">
-        <div class="swiper hero-swiper">
-            <div class="swiper-wrapper">
+        <div id="heroCarousel" class="carousel slide carousel-fade">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
                 <!-- Slide 1 -->
-                <div class="swiper-slide">
+                <div class="carousel-item active">
                     <div class="slide-content">
                         <div class="hero-content">
                             <h1>Summer Essentials Reimagined</h1>
@@ -1105,7 +1109,7 @@ I've added all the most commonly used e-commerce homepage sections while maintai
                 </div>
                 
                 <!-- Slide 2 -->
-                <div class="swiper-slide">
+                <div class="carousel-item">
                     <div class="slide-content">
                         <div class="hero-content">
                             <h1>Beachwear Collection</h1>
@@ -1119,7 +1123,7 @@ I've added all the most commonly used e-commerce homepage sections while maintai
                 </div>
                 
                 <!-- Slide 3 -->
-                <div class="swiper-slide">
+                <div class="carousel-item">
                     <div class="slide-content">
                         <div class="hero-content">
                             <h1>Summer Accessories</h1>
@@ -1132,15 +1136,13 @@ I've added all the most commonly used e-commerce homepage sections while maintai
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Minimalist Bottom Controls -->
-        <div class="hero-controls">
-            <div class="control-btn prev-slide">
-                <i class="fas fa-chevron-left"></i>
-            </div>
-            <div class="control-btn next-slide">
-                <i class="fas fa-chevron-right"></i>
+            <div class="hero-controls">
+                <button class="control-btn" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="control-btn" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -1838,64 +1840,51 @@ I've added all the most commonly used e-commerce homepage sections while maintai
         </div>
     </div>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Initialize Hero Swiper
-        const heroSwiper = new Swiper('.hero-swiper', {
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            effect: 'fade',
-            fadeEffect: {
-                crossFade: true
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Bootstrap Carousel
+            const heroCarousel = document.getElementById('heroCarousel');
+            if (heroCarousel) {
+                new bootstrap.Carousel(heroCarousel, {
+                    interval: 5000,
+                    ride: 'carousel'
+                });
             }
-        });
-        
-        // Custom navigation controls
-        document.querySelector('.prev-slide').addEventListener('click', () => {
-            heroSwiper.slidePrev();
-        });
-        
-        document.querySelector('.next-slide').addEventListener('click', () => {
-            heroSwiper.slideNext();
-        });
-        
-        // Simple animation for navbar links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-                this.classList.add('active');
+
+            // Simple animation for navbar links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                });
             });
-        });
-        
-        // Add scroll effect to navbar
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
-            } else {
-                navbar.style.background = 'var(--glass-bg)';
-                navbar.style.boxShadow = 'var(--glass-shadow)';
-            }
-        });
-        
-        // Add to cart animation
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
-                const originalIcon = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-check"></i>';
-                this.style.backgroundColor = '#4CAF50';
-                
-                setTimeout(() => {
-                    this.innerHTML = originalIcon;
-                    this.style.backgroundColor = '';
-                }, 1500);
+            
+            // Add scroll effect to navbar
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.background = 'var(--glass-bg)';
+                    navbar.style.boxShadow = 'var(--glass-shadow)';
+                }
+            });
+            
+            // Add to cart animation
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalIcon = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    this.style.backgroundColor = '#4CAF50';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalIcon;
+                        this.style.backgroundColor = '';
+                    }, 1500);
+                });
             });
         });
     </script>
