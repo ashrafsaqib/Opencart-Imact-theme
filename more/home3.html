@@ -982,6 +982,44 @@
     flex-grow: 1;
 }
 
+.search-slider .form-control {
+    border: 1px solid #ced4da;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.search-result-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.search-result-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 1rem;
+}
+
+.search-result-item-details h6 {
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.search-result-item-details p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
 /* Shop Slider */
 .shop-slider-overlay {
     position: fixed;
@@ -1807,10 +1845,30 @@
         <div class="search-slider-body">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Search for products...">
-                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                <button class="btn btn-dark" type="button"><i class="fas fa-search"></i></button>
             </div>
             <div class="search-results">
-                <!-- Search results will be populated here -->
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Summer Top">
+                    <div class="search-result-details">
+                        <h6>Summer Top</h6>
+                        <p>$59.99</p>
+                    </div>
+                </div>
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Beach Coverup">
+                    <div class="search-result-details">
+                        <h6>Beach Coverup</h6>
+                        <p>$49.99</p>
+                    </div>
+                </div>
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Sunglasses">
+                    <div class="search-result-details">
+                        <h6>Sunglasses</h6>
+                        <p>$79.99</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
